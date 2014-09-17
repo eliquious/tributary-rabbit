@@ -13,7 +13,7 @@ import json
 __all__ = ['AMQPMessenger', 'AMQPListener', 'JSONListener', 'StringListener']
 
 
-class AMQPMessenger(AMQPMessenger):
+class AMQPMessenger(StreamElement):
     """docstring for AMQPMessenger"""
     def __init__(self, name, user, password, vhost, host, exchange, queue,
                  routing_key, exchange_type='topic', auto_delete=False,
@@ -124,7 +124,8 @@ class AMQPListener(StreamProducer):
                 self.scatter(Message(**self.parse(content)))
             else:
                 # yield to other greenlet
-                self.tick()
+                # self.tick()
+                self.sleep(1)
 
 
 class JSONListener(AMQPListener):

@@ -21,11 +21,9 @@ setup(
     maintainer_email='max.franks@synapse-wireless.com',
     url='http://www.synapse-wireless.com',
     packages=['tributary_rabbit'],
-    # data_files=[('share/doc/tributary', ['README.rst'])],
-    # entry_points={
-        # 'console_scripts': ['sample = sample.main:_main']
-        # 'tributary': '.fs = tributary_rabbit'
-    # },
+    entry_points={
+        'tributary.ext': '.amqp = tributary_rabbit'
+    },
     setup_requires=['vcversioner'],
     vcversioner={
         'version_module_paths': ['tributary_rabbit/_version.py'],
