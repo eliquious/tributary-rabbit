@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from setuptools import setup
-import tributary_rabbit
+import amqp
 
 with open('README.md', 'r') as f:
     long_description = f.read()
@@ -14,19 +14,19 @@ with open('test-requirements.txt', 'r') as f:
     test_requires = [x for x in list(f) if x[0:2] != '-r']
 
 setup(
-    name=tributary_rabbit.__name__,
-    description=tributary_rabbit.__doc__,
+    name='tributary_amqp',
+    description=amqp.__doc__,
     long_description=long_description,
     maintainer='Max Franks',
     maintainer_email='max.franks@synapse-wireless.com',
     url='http://www.synapse-wireless.com',
-    packages=['tributary_rabbit'],
+    packages=['amqp'],
     entry_points={
-        'tributary.ext': '.amqp = tributary_rabbit'
+        'tributary.ext': '.amqp = amqp'
     },
     setup_requires=['vcversioner'],
     vcversioner={
-        'version_module_paths': ['tributary_rabbit/_version.py'],
+        'version_module_paths': ['amqp/_version.py'],
         'vcs_args': ['git', '--git-dir', '%(root)s/.git', 'describe',
                   '--tags', '--long'],
     },
