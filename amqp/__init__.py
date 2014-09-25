@@ -106,7 +106,8 @@ class AMQPListener(StreamProducer):
 
     def postProcess(self, message):
         """Called when actor is stopped or killed"""
-        self.conn.close()
+        if not self.conn.closed:
+            self.conn.close()
 
     def parse(self, data):
         """Parses data received"""
@@ -180,7 +181,8 @@ class BatchAMQPMessenger(StreamElement):
 
     def postProcess(self, message):
         """Called when actor is stopped or killed"""
-        self.conn.close()
+        if not self.conn.closed:
+            self.conn.close()
 
     def process(self, message):
         """Publish message to queue"""
