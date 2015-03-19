@@ -2,6 +2,7 @@
 from tributary.core import Message, Engine
 from tributary.streams import StreamElement, StreamProducer
 from tributary import log_exception
+import tributary.events as events
 
 # amqp dependencies
 from haigha.connection import Connection
@@ -160,6 +161,8 @@ class BatchAMQPMessenger(StreamElement):
         # options
         self.exchange_type = exchange_type
         self.auto_delete = auto_delete
+
+        # self.on(events.STOP, lambda msg: self.log("Stopping..."))
 
     def handle_exception(self, exc):
         log_exception(self.name, "Error: ")
